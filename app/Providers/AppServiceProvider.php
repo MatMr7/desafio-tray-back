@@ -2,6 +2,15 @@
 
 namespace App\Providers;
 
+use App\Models\{
+    Seller,
+    Sale
+};
+
+use App\Observers\{
+    SellerObserve,
+    SaleObserver
+};
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Seller::observe(SellerObserve::class);
+        Sale::observe(SaleObserver::class);
     }
 }

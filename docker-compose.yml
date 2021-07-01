@@ -1,7 +1,7 @@
 version: "3.7"
 services:
     # imagem tray-api
-    micro_01:
+    tray-api:
         build: 
             args: 
                 user: matheus
