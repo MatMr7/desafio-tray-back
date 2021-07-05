@@ -27,6 +27,7 @@ Altere o 'user' para o desejado
 ### Configure o .env
 ```
 $ cp .env.example .env
+obs: coloque o DB_HOST=db_tray_api
 ```
 ```
 Altere o .env criado com as suas configs
