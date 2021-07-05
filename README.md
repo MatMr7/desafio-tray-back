@@ -73,15 +73,15 @@ POST - {{ base_url }}seller
 request:
 {
 	"email":"matheus@maill",
-	"name":"matheus Name"
+	"name":"Matheus Name"
 }
 
 response:
 {
   "data": {
     "id": "abd679df-96d0-49ae-96d8-a692df0a3390",
-    "name": "Test Name",
-    "email": "teste@nail",
+    "name": "Matheus Name",
+    "email": "matheus@maill",
     "created_at": "2021-07-05T12:27:42.000000Z"
   }
 }
