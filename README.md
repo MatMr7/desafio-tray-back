@@ -26,7 +26,7 @@ Altere o 'user' para o desejado
 ```
 ### Configure o .env
 ```
-$ cp .env-example .env
+$ cp .env.example .env
 ```
 ```
 Altere o .env criado com as suas configs
