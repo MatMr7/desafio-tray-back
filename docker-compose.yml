@@ -13,6 +13,8 @@ services:
         working_dir: /var/www/
         volumes:
             - ./:/var/www
+        networks: 
+            - microservices
 
 
     # nginx
@@ -25,6 +27,8 @@ services:
         volumes: 
             - ./:/var/www
             - ./docker/nginx/:/etc/nginx/conf.d/
+        networks: 
+            - microservices
 
 
     # mysql
@@ -40,3 +44,10 @@ services:
             - ./.docker/mysql/dbdata:/var/lib/mysql
         ports: 
             - 3308:3306
+        networks: 
+            - microservices
+
+
+networks: 
+    microservices:
+        driver: bridge
