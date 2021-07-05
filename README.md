@@ -36,8 +36,9 @@ Altere o .env criado com as suas configs
 $ sudo docker-compose up
 ```
 
-### Execute as migrations
+### Execute as migrations e instalando dependencias
 ```
+$ composer install
 $ sudo docker-compose exec tray-api bash
 ```
 ```
@@ -45,12 +46,6 @@ $ php artisan migrate
 ```
 
 ### Executando a API
-```
-Caso esteja no bash, saia dele com o comando 'exit'
-```
-```
-$ php artisan migrate
-```
 ```
 Agora, a Api deve estar rodadando no endereco: 'http://localhost:8000'
 Obs: Esse endereco é entendido como {{ base_url }} nas secoes abaixo
