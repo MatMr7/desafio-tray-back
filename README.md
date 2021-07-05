@@ -1,62 +1,214 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Desafio Desenvolvedor PHP Tray!
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Instalacão
+## requisitos:
+1. Docker
+2. Docker-compose
+3. PHP 7.4
+4. NGINX
+5. MySql
 
-## About Laravel
+## Passos
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Clone o repositório
+```
+$ git clone https://github.com/MatMr7/desafio-tray.git
+```
+### Entre no repositório
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+```
+$ cd tray-api
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Ajuste a pasta 'docker-compose.yml'
+```
+Altere o 'user' para o desejado
+```
+### Configure o .env
+```
+$ cp .env-example .env
+```
+```
+Altere o .env criado com as suas configs
+```
+### Execute o docker
+```
+$ sudo docker-compose up
+```
 
-## Learning Laravel
+### Execute as migrations
+```
+$ sudo docker-compose exec tray-api bash
+```
+```
+$ php artisan migrate
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Executando a API
+```
+Caso esteja no bash, saia dele com o comando 'exit'
+```
+```
+$ php artisan migrate
+```
+```
+Agora, a Api deve estar rodadando no endereco: 'http://localhost:8000'
+Obs: Esse endereco é entendido como {{ base_url }} nas secoes abaixo
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# API
 
-## Laravel Sponsors
+### Endpoint
+Os métodos a seguir são disponibilizados para acesso via HTTPS em seus respectivos verbos. O header Content-Type e o corpo da mensagem devem seguir o formato application/json.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### Vendedor
 
-### Premium Partners
+#### Cadastra vendedor
+```
+POST - {{ base_url }}seller
+```
+##### Request Fields:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
+| Nome  |  Tipo  | Descricao
+| ------------------- | ------------------- |--------------|
+|  email |  String | Faz referencia ao email do vendedor a ser cadastrado|
+|  name |  String | Faz referencia ao nome do vendedor a ser cadastrado|
+```
+request:
+{
+	"email":"matheus@maill",
+	"name":"matheus Name"
+}
 
-## Contributing
+response:
+{
+  "data": {
+    "id": "abd679df-96d0-49ae-96d8-a692df0a3390",
+    "name": "Test Name",
+    "email": "teste@nail",
+    "created_at": "2021-07-05T12:27:42.000000Z"
+  }
+}
+```
+#### Lista vendedores
+```
+GET - {{ base_url }}seller
+```
+```
+response: {
+{	"data": [
+     {
+	   "id": "381327e8-92cb-4389-bda8-f4aa2e5454e5",
+	   "name": "Jose",
+	   "email": "jose@mail.com",
+	   "created_at": "2021-07-05T02:21:47.000000Z"
+    },
+    {
+      "id": "8c5447fa-ab41-4007-a9e6-b1f789a9fb76",
+      "name": "Maria",
+      "email": "maria@mail.com",
+      "created_at": "2021-07-05T02:22:13.000000Z"
+    },
+    {
+      "id": "2f084629-7789-4f9d-ae52-41460d51e81e",
+      "name": "mario",
+      "email": "maio@mail.com",
+      "created_at": "2021-07-05T02:22:49.000000Z"
+    },
+    {
+      "id": "56d3ed06-8a97-49da-95c1-e67fe4dcfa1e",
+      "name": "katia",
+      "email": "katia@mail.com",
+      "created_at": "2021-07-05T02:23:21.000000Z"
+    }
+   ]
+}
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Vendas
 
-## Code of Conduct
+#### Cadastra venda
+```
+POST - {{ base_url }}seller
+```
+##### Request Fields:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+| Nome  |  Tipo  | Descricao
+| ------------------- | ------------------- |--------------|
+|  seller_id |  string | Faz referencia ao id do vendedor correspondente a venda
+|  sale_value |  String | Faz referencia ao valor da venda e deve estar, são 12 dígitos representando o valor, considerando os últimos 2 dígitos como casas decimais. Exemplo: "000000001250" é equivalente R$ 12,50 |
+```
+request:
+{
+	"seller_id":"13eb1ecd-37a5-49e0-a9dd-6ce00efdd2df",
+	"sale_value": "000000012050"
+}
 
-## Security Vulnerabilities
+response:
+{
+  "data": {
+    "id": "4de7dbb0-93f2-4137-8f48-bf178862835c",
+    "seller": {
+      "name": "Matheus",
+      "email": "ti.matheus.morais@gmail.com"
+    },
+    "sale_value": 120.5,
+    "commission": 10.24,
+    "created_at": "2021-07-05T11:52:44.000000Z"
+  }
+}
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#### Listar vendas
+```
+GET - {{ base_url }}seller/{id}
+```
+##### Request Fields:
+| Nome  |  Tipo  | Descricao
+| ------------------- | ------------------- |--------------|
+|  id |  String | Faz referencia ao id do vendedor que as vendas serao recuperadas|
 
-## License
+```
+response:
+{
+  "data": [
+    {
+      "id": "87c80f49-204e-4721-9a0c-b54e7ba989e3",
+      "seller": {
+        "name": "Test Name",
+        "email": "teste@mail"
+      },
+      "sale_value": 120.5,
+      "commission": 10.24,
+      "created_at": "2021-07-05T12:46:13.000000Z"
+    },
+    {
+      "id": "45b6df81-2ac5-4b7d-be3a-99f90c5be815",
+      "seller": {
+        "name": "Test Name",
+        "email": "teste@mail"
+      },
+      "sale_value": 190.5,
+      "commission": 16.19,
+      "created_at": "2021-07-05T12:46:20.000000Z"
+    }
+  ]
+}
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Enviar relatório de vendas das ultimas 24 horas
+```
+$ sudo docker-compose exec tray-api bash
+```
+```
+$ php artisan report:send *email-recebedor*
+```
+```
+Configure um CronJob ou um Supervisor para executar esse comando a cada 24 horas
+```
+
+### Testes
+
+```
+$ php artisan test
+```
