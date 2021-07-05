@@ -34,7 +34,11 @@ class Sale extends Model
         return $this->formatValueFromTwelveDigits($value);
     }
 
-    
+    /**
+     * Gets a 12 digits formated and turns it in its match double
+     * @param string $value
+     * @return double
+     */
     public function formatValueFromTwelveDigits($value)
     {
         $value = ltrim($value,'0');

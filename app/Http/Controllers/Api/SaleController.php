@@ -11,6 +11,8 @@ use App\Models\{
     Seller
 };
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\DailyReportEmail;
 
 class SaleController extends Controller
 {
