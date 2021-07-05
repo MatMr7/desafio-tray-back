@@ -17,7 +17,7 @@ $ git clone https://github.com/MatMr7/desafio-tray.git
 ### Entre no repositório
 
 ```
-$ cd desafio-api
+$ cd desafio-tray
 ```
 
 ### Ajuste a pasta 'docker-compose.yml'
